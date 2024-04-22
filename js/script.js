@@ -8,6 +8,9 @@ createApp({
             // Chat aperta attualmente
             activeIndex: 0,
 
+            // Ricerca chat
+            search: '',
+
             newMessage: {
                 date: '',
                 message: '',

@@ -107,7 +107,8 @@
                 <div class="profile-search align-ctr justy-ctr none">
                     <div class="input flex">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat">
+                        <label for="searchProfile"></label>
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" id="searchProfile" v-model="search">
                     </div>
                 </div>
                 <!-- /Profile Search -->
@@ -116,7 +117,7 @@
                 <div class="chat-list flex dir-col scroll h-100">
 
                     <!-- Single Chat -->
-                    <div class="single-chat flex" v-for="(curChat, index) in contacts" @click="activeChat(index)">
+                    <div class="single-chat flex" v-for="(curChat, index) in contacts" @click="activeChat(index)" v-show='curChat.name.toLowerCase().includes(search.toLowerCase())'>
 
                         <div class="w-100 h-100 flex align-ctr gap">
 
