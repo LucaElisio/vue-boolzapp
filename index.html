@@ -108,7 +108,8 @@
                     <div class="input flex">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <label for="searchProfile"></label>
-                        <input type="text" placeholder="Cerca o inizia una nuova chat" id="searchProfile" v-model="search">
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" id="searchProfile"
+                            v-model="search">
                     </div>
                 </div>
                 <!-- /Profile Search -->
@@ -117,7 +118,8 @@
                 <div class="chat-list flex dir-col scroll h-100">
 
                     <!-- Single Chat -->
-                    <div class="single-chat flex" v-for="(curChat, index) in contacts" @click="activeChat(index)" v-show='curChat.name.toLowerCase().includes(search.toLowerCase())'>
+                    <div class="single-chat flex" v-for="(curChat, index) in contacts" @click="activeChat(index)"
+                        v-show='curChat.name.toLowerCase().includes(search.toLowerCase())'>
 
                         <div class="w-100 h-100 flex align-ctr gap">
 
@@ -149,13 +151,19 @@
 
                     <div class="chat-container flex wrap">
 
-                        <!-- Messaggio inviato -->
-                        <div class="col" v-for="curMessage in contacts[activeIndex].messages">
+                        <!-- Messaggio -->
+                        <div class="col" v-for="(curMessage, index) in contacts[activeIndex].messages">
                             <div class="flex" :class="{'end': curMessage.status === 'sent'}">
                                 <div class="message" :class="curMessage.status">
                                     <div class="text flex space-btw">
                                         <p>{{curMessage.message}}</p>
-                                        <i class="fa-solid fa-chevron-down"></i>
+                                        <div class="dropdown">
+                                            <button @click="toggleDropdown(index, activeIndex)" class="dropbtn"><i class="fa-solid fa-chevron-down"></i></button>
+                                            <div id="myDropdown" class="dropdown-content" :class="{'none': !curMessage.isOpen}">
+                                                <a href="#">Info messaggio</a>
+                                                <a href="#">Elimina messaggio</a>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="message-hour">{{curMessage.date}}</div>
                                 </div>
@@ -186,7 +194,8 @@
                         <i class="fa-regular fa-face-smile"></i>
                     </div>
                     <label for="sentMessage"></label>
-                    <input type="text" class="write-message" placeholder="Scrivi un messaggio" id="sentMessage" v-model.trim="newMessage.message" @keyup.enter="sendMessage">
+                    <input type="text" class="write-message" placeholder="Scrivi un messaggio" id="sentMessage"
+                        v-model.trim="newMessage.message" @keyup.enter="sendMessage">
                     <div class="write-col none">
                         <i class="fa-solid fa-microphone"></i>
                     </div>
