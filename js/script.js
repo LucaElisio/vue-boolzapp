@@ -229,8 +229,13 @@ createApp({
         },
 
         toggleDropdown: function(clickedIndex, activeIndex){ 
-            console.log("ciao", clickedIndex);
+            // console.log("ciao", clickedIndex);
             this.contacts[activeIndex].messages[clickedIndex].isOpen = !this.contacts[activeIndex].messages[clickedIndex].isOpen
+        },
+
+        deleteMessage: function(clickedIndex, activeIndex){
+            // console.log("elimina");
+            this.contacts[activeIndex].messages.splice(clickedIndex, 1)
         }
     }
 }).mount("#app")
