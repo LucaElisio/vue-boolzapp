@@ -156,7 +156,7 @@
                                         <p>{{curMessage.message}}</p>
                                         <i class="fa-solid fa-chevron-down"></i>
                                     </div>
-                                    <div class="message-hour">{{date}}</div>
+                                    <div class="message-hour">{{curMessage.date}}</div>
                                 </div>
                             </div>
                         </div>
@@ -184,7 +184,8 @@
                     <div class="write-col none">
                         <i class="fa-regular fa-face-smile"></i>
                     </div>
-                    <input type="text" class="write-message" placeholder="Scrivi un messaggio">
+                    <label for="sentMessage"></label>
+                    <input type="text" class="write-message" placeholder="Scrivi un messaggio" id="sentMessage" v-model.trim="newMessage.message" @keyup.enter="sendMessage">
                     <div class="write-col none">
                         <i class="fa-solid fa-microphone"></i>
                     </div>

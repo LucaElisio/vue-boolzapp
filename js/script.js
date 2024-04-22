@@ -8,6 +8,12 @@ createApp({
             // Chat aperta attualmente
             activeIndex: 0,
 
+            newMessage: {
+                date: '',
+                message: '',
+                status: 'sent'
+            },
+
             contacts: [
             
                 {
@@ -178,6 +184,18 @@ createApp({
     methods: {
         activeChat: function(clickedIndex) {
             this.activeIndex = clickedIndex;
+        },
+        sendMessage: function(){
+            this.contacts[this.activeIndex].messages.push({...this.newMessage})
+            this.newMessage.message = ''
+
+            setTimeout(() => {
+                this.contacts[this.activeIndex].messages.push({
+                    date:'',
+                    message: 'ok',
+                    status: 'received'
+                })
+            }, 1000);
         }
     }
 }).mount("#app")
