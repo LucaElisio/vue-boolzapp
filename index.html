@@ -60,7 +60,7 @@
                         <img src="img/avatar_1.jpg" alt="avatar_1">
                     </figure>
                     <div class="user-desc">
-                        <h4 class="name">{{Michele}}</h4>
+                        <h4 class="name">{{contacts[activeIndex].name}}</h4>
                         <span class="last-seen"> Ultimo accesso oggi alle 16:26 </span>
                     </div>
 
@@ -116,7 +116,7 @@
                 <div class="chat-list flex dir-col scroll h-100">
 
                     <!-- Single Chat -->
-                    <div class="single-chat flex" v-for="(curChat, index) in contacts">
+                    <div class="single-chat flex" v-for="(curChat, index) in contacts" @click="activeChat(index)">
 
                         <div class="w-100 h-100 flex align-ctr gap">
 
@@ -147,32 +147,33 @@
                 <div class="chat">
 
                     <div class="chat-container flex wrap">
-                        <div class="col">
-                            <div class="end flex">
-                                <div class="message sent">
+
+                        <!-- Messaggio inviato -->
+                        <div class="col" v-for="curMessage in contacts[activeIndex].messages">
+                            <div class="flex" :class="{'end': curMessage.status === 'sent'}">
+                                <div class="message" :class="curMessage.status">
                                     <div class="text flex space-btw">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iusto aperiam beatae natus at, explicabo iste nisi aliquam quos excepturi provident ipsam sunt est ut dignissimos quo minus, reprehenderit velit!</p>
+                                        <p>{{curMessage.message}}</p>
                                         <i class="fa-solid fa-chevron-down"></i>
                                     </div>
-
-                                    <div class="message-hour">16:00</div>
-
+                                    <div class="message-hour">{{date}}</div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+
+                        <!-- Messaggio ricevuto -->
+                        <!-- <div class="col">
                             <div class="flex">
                                 <div class="message received">
                                     <div class="text flex space-btw">
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iusto aperiam beatae natus at, explicabo iste nisi aliquam quos excepturi provident ipsam sunt est ut dignissimos quo minus, reprehenderit velit!</p>
                                         <i class="fa-solid fa-chevron-down"></i>
                                     </div>
-
                                     <div class="message-hour">16:00</div>
-
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
+
                     </div>
 
                 </div>

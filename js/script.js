@@ -4,11 +4,16 @@ const { createApp } = Vue
 createApp({
     data() {
         return {
+
+            // Chat aperta attualmente
+            activeIndex: 0,
+
             contacts: [
+            
                 {
                     name: 'Michele',
                     avatar: '_1',
-                    visible: true,
+                    visible: true,  // x filtro ricerca
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
@@ -171,6 +176,8 @@ createApp({
         }
     },
     methods: {
-
+        activeChat: function(clickedIndex) {
+            this.activeIndex = clickedIndex;
+        }
     }
 }).mount("#app")
