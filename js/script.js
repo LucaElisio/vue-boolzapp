@@ -236,6 +236,10 @@ createApp({
         deleteMessage: function(clickedIndex, activeIndex){
             // console.log("elimina");
             this.contacts[activeIndex].messages.splice(clickedIndex, 1)
+        },
+
+        getContactAvatar: function(contact) {
+            return `../img/avatar${contact.avatar}.jpg`
         }
     }
 }).mount("#app")

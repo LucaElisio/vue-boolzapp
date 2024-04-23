@@ -57,7 +57,7 @@
                 <div class="header-chat-user w-100 h-100 flex align-ctr gap">
 
                     <figure class="picture flex align-ctr">
-                        <img src="img/avatar_1.jpg" alt="avatar_1">
+                        <img :src="getContactAvatar(contacts[activeIndex])" alt="avatar_1">
                     </figure>
                     <div class="user-desc">
                         <h4 class="name">{{contacts[activeIndex].name}}</h4>
@@ -124,7 +124,7 @@
                         <div class="w-100 h-100 flex align-ctr gap">
 
                             <figure class="picture flex align-ctr">
-                                <img :src="`../img/avatar${curChat.avatar}.jpg`" alt="avatar_1">
+                                <img :src="getContactAvatar(curChat)" :alt="`Avatar ${curChat.avatar}`">
                             </figure>
                             <div class="user-desc none">
                                 <h4 class="name">{{curChat.name}}</h4>
@@ -169,19 +169,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Messaggio ricevuto -->
-                        <!-- <div class="col">
-                            <div class="flex">
-                                <div class="message received">
-                                    <div class="text flex space-btw">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta iusto aperiam beatae natus at, explicabo iste nisi aliquam quos excepturi provident ipsam sunt est ut dignissimos quo minus, reprehenderit velit!</p>
-                                        <i class="fa-solid fa-chevron-down"></i>
-                                    </div>
-                                    <div class="message-hour">16:00</div>
-                                </div>
-                            </div>
-                        </div> -->
 
                     </div>
 
