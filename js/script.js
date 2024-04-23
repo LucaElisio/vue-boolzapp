@@ -1,6 +1,8 @@
 
 const { createApp } = Vue
 
+const dt = luxon.DateTime;
+
 createApp({
     data() {
         return {
@@ -212,16 +214,26 @@ createApp({
         }
     },
     methods: {
+
         activeChat: function(clickedIndex) {
             this.activeIndex = clickedIndex;
         },
-        sendMessage: function(){
+
+        sendMessage: function(newMessage){
+            const now = dt.now();
+            // console.log(now);
+            const dateHuman = (now.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS));
+
+            this.newMessage.date = dateHuman
+
             this.contacts[this.activeIndex].messages.push({...this.newMessage})
             this.newMessage.message = ''
 
+            const newDate = now.plus({ seconds: 1 }).toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+
             setTimeout(() => {
                 this.contacts[this.activeIndex].messages.push({
-                    date:'',
+                    date: newDate,
                     message: 'ok',
                     status: 'received'
                 })
@@ -243,3 +255,37 @@ createApp({
         }
     }
 }).mount("#app")
+
+
+
+// Libreria Luxon
+
+// Data attuale
+
+const now = dt.now(); // object --> data e ora al momento del richiamo della funzione
+// Per visualizzare la data dobbiamo prima formattarla
+
+// console.log(now.toString()); //formato ISO 8601
+
+// console.log(now.toLocaleString()); // gg/mm/aaaa
+
+// console.log(now.toLocaleString(luxon.DateTime.DATE_MED)); // gg/mese/aaaa
+
+// console.log(now.toLocaleString(luxon.DateTime.DATETIME_HUGE)); //tutto
+
+// console.log(now.setLocale('fr').toLocaleString(luxon.DateTime.DATETIME_HUGE)); //tutto in francese
+
+console.log(now.toLocaleString(luxon.DateTime.DATETIME_SHORT_WITH_SECONDS)); //formato per esercizio boolzapp
+
+// Trasformare stringa in oggetto luxon
+const dateString = "10/01/2020" //string
+const dateLuxon = dt.fromFormat(dateString, "dd/MM/yyyy"); //per fare operazioni matematica abbiamo bisogno dell'oggetto luxon e non possiamo farle sulla stringa!
+console.log(dateLuxon);
+
+// Ritrasformo in stringa
+console.log(dateLuxon.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS));
+
+
+
+
+

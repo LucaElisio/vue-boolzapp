@@ -57,7 +57,7 @@
                 <div class="header-chat-user w-100 h-100 flex align-ctr gap">
 
                     <figure class="picture flex align-ctr">
-                        <img :src="getContactAvatar(contacts[activeIndex])" alt="avatar_1">
+                        <img :src="getContactAvatar(contacts[activeIndex])" alt="`Avatar ${contacts[activeIndex].avatar}`">
                     </figure>
                     <div class="user-desc">
                         <h4 class="name">{{contacts[activeIndex].name}}</h4>
@@ -198,9 +198,21 @@
 
     </div>
 
+    <!-- Luxon -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+
     <!-- JS -->
     <script src="js/script.js"></script>
 
 </body>
 
 </html>
+
+
+<!-- // Trasformare stringa in oggetto luxon
+const dateString = "10/01/2020" //string
+const dateLuxon = dt.fromFormat(dateString, "dd/MM/yyyy"); //per fare operazioni matematica abbiamo bisogno dell'oggetto luxon e non possiamo farle sulla stringa!
+console.log(dateLuxon);
+
+// Ritrasformo in stringa
+console.log(dateLuxon.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS)); -->
