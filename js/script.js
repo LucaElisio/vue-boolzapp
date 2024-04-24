@@ -217,29 +217,33 @@ createApp({
         },
 
         sendMessage: function(newMessage){
-            const now = dt.now();
-            // console.log(now);
-            const dateHuman = (now.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS));
 
-            this.newMessage.date = dateHuman
+            if (!this.newMessage.message.length){
+                alert("Scrivi qualcosa")
+            } else {
 
-            this.contacts[this.activeIndex].messages.push({...this.newMessage})
-            this.newMessage.message = ''
+                const now = dt.now();
+                // console.log(now);
+                const dateHuman = (now.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS));
+    
+                this.newMessage.date = dateHuman
+                this.contacts[this.activeIndex].messages.push({...this.newMessage})
+                this.newMessage.message = ''
+                const newDate = now.plus({ seconds: 1 }).toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
+    
+                setTimeout(() => {
+                    this.contacts[this.activeIndex].messages.push({
+                        date: newDate,
+                        message: 'ok',
+                        status: 'received'
+                    })
+    
+                    this.contacts[this.activeIndex].lastSeen = newDate;
 
-            const newDate = now.plus({ seconds: 1 }).toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS);
-
-            setTimeout(() => {
-                this.contacts[this.activeIndex].messages.push({
-                    date: newDate,
-                    message: 'ok',
-                    status: 'received'
-                })
-
-                this.contacts[this.activeIndex].lastSeen = newDate;
-
-            }, 1000);
+                }, 1000);
+            }
         },
-
+        
         toggleDropdown: function(clickedIndex, activeIndex){ 
             // console.log("ciao", clickedIndex);
             this.contacts[activeIndex].messages[clickedIndex].isOpen = !this.contacts[activeIndex].messages[clickedIndex].isOpen

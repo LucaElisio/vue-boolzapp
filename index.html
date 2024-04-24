@@ -124,10 +124,12 @@
 
                         <div class="w-100 h-100 flex align-ctr gap">
 
-                            <figure class="picture flex align-ctr">
-                                <img :src="getContactAvatar(curContact)" :alt="`Avatar ${curContact.avatar}`">
-                            </figure>
-                            <div class="user-desc none">
+                            <div class="picture flex align-ctr">
+                                <figure >
+                                    <img :src="getContactAvatar(curContact)" :alt="`Avatar ${curContact.avatar}`">
+                                </figure>
+                            </div>
+                            <div class="user-desc">
                                 <h4 class="name">{{curContact.name}}</h4>
                                 <span class="last-seen" v-if="curContact.messages.length"> Ultimo messaggio  "{{ curContact.messages[curContact.messages.length - 1].message }}"" </span>
                             </div>
