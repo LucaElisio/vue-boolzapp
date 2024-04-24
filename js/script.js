@@ -206,8 +206,59 @@ createApp({
                         }
                     ],
                 }
-            ]
+            ],
 
+            answer: [
+                {
+                    date: '',
+                    message: 'Ciao come stai?',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Ciao come va?',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Sto bene, grazie! Tu?',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Anche io bene, grazie!',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Che fai oggi?',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Niente di speciale, tu?',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Penso di uscire a fare una passeggiata.',
+                    status: 'received',
+                    isOpen: false
+                },
+                {
+                    date: '',
+                    message: 'Sembra una buona idea!',
+                    status: 'received',
+                    isOpen: false
+                },
+                // Puoi aggiungere altri messaggi secondo necessità...
+            ]
         }
     },
     methods: {
@@ -233,17 +284,15 @@ createApp({
     
                 setTimeout(() => {
                     this.contacts[this.activeIndex].messages.push({
-                        date: newDate,
-                        message: 'ok',
-                        status: 'received'
+                        ...this.answer[Math.floor(Math.random() * this.answer.length)]
                     })
     
-                    this.contacts[this.activeIndex].lastSeen = newDate;
+                    this.answer[this.activeIndex].date = newDate;
 
                 }, 1000);
             }
         },
-        
+
         toggleDropdown: function(clickedIndex, activeIndex){ 
             // console.log("ciao", clickedIndex);
             this.contacts[activeIndex].messages[clickedIndex].isOpen = !this.contacts[activeIndex].messages[clickedIndex].isOpen
