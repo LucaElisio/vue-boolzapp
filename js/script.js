@@ -13,9 +13,6 @@ createApp({
             // Ricerca chat
             search: '',
 
-            // Apertura e Chiusura dropdown
-            
-
             newMessage: {
                 date: '',
                 message: '',
@@ -237,6 +234,9 @@ createApp({
                     message: 'ok',
                     status: 'received'
                 })
+
+                this.contacts[this.activeIndex].lastSeen = newDate;
+
             }, 1000);
         },
 
@@ -252,9 +252,12 @@ createApp({
 
         getContactAvatar: function(contact) {
             return `../img/avatar${contact.avatar}.jpg`
-        }
-    }
+        },
+    },
+
 }).mount("#app")
+
+
 
 
 
@@ -262,7 +265,7 @@ createApp({
 
 // Data attuale
 
-const now = dt.now(); // object --> data e ora al momento del richiamo della funzione
+// const now = dt.now(); // object --> data e ora al momento del richiamo della funzione
 // Per visualizzare la data dobbiamo prima formattarla
 
 // console.log(now.toString()); //formato ISO 8601
@@ -275,17 +278,15 @@ const now = dt.now(); // object --> data e ora al momento del richiamo della fun
 
 // console.log(now.setLocale('fr').toLocaleString(luxon.DateTime.DATETIME_HUGE)); //tutto in francese
 
-console.log(now.toLocaleString(luxon.DateTime.DATETIME_SHORT_WITH_SECONDS)); //formato per esercizio boolzapp
+// console.log(now.toLocaleString(luxon.DateTime.DATETIME_SHORT_WITH_SECONDS)); //formato per esercizio boolzapp
 
 // Trasformare stringa in oggetto luxon
-const dateString = "10/01/2020" //string
-const dateLuxon = dt.fromFormat(dateString, "dd/MM/yyyy"); //per fare operazioni matematica abbiamo bisogno dell'oggetto luxon e non possiamo farle sulla stringa!
-console.log(dateLuxon);
+// const dateString = "10/01/2020" //string
+// const dateLuxon = dt.fromFormat(dateString, "dd/MM/yyyy"); //per fare operazioni matematica abbiamo bisogno dell'oggetto luxon e non possiamo farle sulla stringa!
+// console.log(dateLuxon);
 
 // Ritrasformo in stringa
-console.log(dateLuxon.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS));
-
-
+// console.log(dateLuxon.toLocaleString(dt.DATETIME_SHORT_WITH_SECONDS));
 
 
 

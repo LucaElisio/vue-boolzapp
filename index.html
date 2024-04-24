@@ -57,7 +57,8 @@
                 <div class="header-chat-user w-100 h-100 flex align-ctr gap">
 
                     <figure class="picture flex align-ctr">
-                        <img :src="getContactAvatar(contacts[activeIndex])" alt="`Avatar ${contacts[activeIndex].avatar}`">
+                        <img :src="getContactAvatar(contacts[activeIndex])"
+                            alt="`Avatar ${contacts[activeIndex].avatar}`">
                     </figure>
                     <div class="user-desc">
                         <h4 class="name">{{contacts[activeIndex].name}}</h4>
@@ -118,17 +119,17 @@
                 <div class="chat-list flex dir-col scroll h-100">
 
                     <!-- Single Chat -->
-                    <div class="single-chat flex" v-for="(curChat, index) in contacts" @click="activeChat(index)"
-                        v-show='curChat.name.toLowerCase().includes(search.toLowerCase())'>
+                    <div class="single-chat flex" v-for="(curContact, index) in contacts" @click="activeChat(index)"
+                        v-show='curContact.name.toLowerCase().includes(search.toLowerCase())'>
 
                         <div class="w-100 h-100 flex align-ctr gap">
 
                             <figure class="picture flex align-ctr">
-                                <img :src="getContactAvatar(curChat)" :alt="`Avatar ${curChat.avatar}`">
+                                <img :src="getContactAvatar(curContact)" :alt="`Avatar ${curContact.avatar}`">
                             </figure>
                             <div class="user-desc none">
-                                <h4 class="name">{{curChat.name}}</h4>
-                                <!-- <span class="last-seen"> Ultimo accesso oggi alle 16:26 </span> -->
+                                <h4 class="name">{{curContact.name}}</h4>
+                                <span class="last-seen" v-if="curContact.messages.length"> Ultimo messaggio  "{{ curContact.messages[curContact.messages.length - 1].message }}"" </span>
                             </div>
                         </div>
 
@@ -158,10 +159,13 @@
                                     <div class="text flex space-btw">
                                         <p>{{curMessage.message}}</p>
                                         <div class="dropdown">
-                                            <button @click="toggleDropdown(index, activeIndex)" class="dropbtn"><i class="fa-solid fa-chevron-down"></i></button>
-                                            <div id="myDropdown" class="dropdown-content" :class="{'none': !curMessage.isOpen}">
+                                            <button @click="toggleDropdown(index, activeIndex)" class="dropbtn"><i
+                                                    class="fa-solid fa-chevron-down"></i></button>
+                                            <div id="myDropdown" class="dropdown-content"
+                                                :class="{'none': !curMessage.isOpen}">
                                                 <a href="#">Info messaggio</a>
-                                                <a href="#" @click="deleteMessage(index, activeIndex)">Elimina messaggio</a>
+                                                <a href="#" @click="deleteMessage(index, activeIndex)">Elimina
+                                                    messaggio</a>
                                             </div>
                                         </div>
                                     </div>
